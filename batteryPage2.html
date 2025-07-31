@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Battery List</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 50px;
+    }
+    button {
+      margin: 10px;
+    }
+  </style>
+  <script src="./js/client.js"></script>
+</head>
+<body>
+  <h2>Battery Marka</h2>
+  <button onclick="getBatteryList('Varta')">Varta</button>
+  <button onclick="getBatteryList('Bosch')">Bosch</button>
+  <button onclick="getBatteryList('Exide')">Exide</button>
+  <button onclick="getBatteryList('Grom')">Grom</button>
+  <div id="batteryData">
+    <table style="margin:auto;" id="batteryTable"></table>
+  </div>
+  <br>
+  <div id="errorMessage"></div>
+</body>
+</html>
