@@ -8,7 +8,7 @@ app.use('/js',express.static(__dirname + '/js'));
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let batteries = require("./js/newBatteries.js");
+let batteries = require("./js/mongoBatteries.js");
 
 const http = require("http");
 
@@ -23,6 +23,11 @@ app.get('/',function(req,res)
     res.sendFile(__dirname + '/batteryPage2.html');
 });
 
+app.get('/insertBatteries',function(req,res)
+{
+    batteries.addBatteries();
+});
+
 app.get('/getBatteryList',async(req,res) =>
 {
     const marka=req.query.marka; // n.p. marka ="Exide";
@@ -34,7 +39,7 @@ app.get('/getBatteryList',async(req,res) =>
 app.get('/BuyBattery',function(req,res)
 {
     const batteryID=req.query.id; 
-    console.log("server:getBatteryList: ID="+batteryID);
+    console.log("server:BuyBattery: ID="+batteryID);
     var errorCode=batteries.buyBattery(batteryID);
     res.send(errorCode);
 });

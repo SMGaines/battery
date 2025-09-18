@@ -4,7 +4,10 @@ const ERROR_OUT_OF_STOCK=-2;
 
 const mariadb = require('mariadb');
 
+// database, table, row, column, cell  = baza danych, tabela, wiersz, kolumna, komórka
+
 // Create a connection pool (recommended)
+/* Localhost
 const pool = mariadb.createPool({
   host: 'localhost',
   user: 'root',
@@ -13,7 +16,22 @@ const pool = mariadb.createPool({
   port: 7777,
   connectionLimit: 5
 });
+*/
+const pool = mariadb.createPool({
+  host: 'serverless-northeurope.sysp0000.db3.skysql.com',
+  user: 'dbpbf30486750',
+  password: 'o7Q8w_odGhN{K0l571Xsw', // replace with your root password
+  database: 'batteryDB',        // or any DB you created
+  port: 4003,
+  connectionLimit: 5
+});
 
+// serverless-northeurope.sysp0000.db3.skysql.com
+// 4003
+// dbpbf30486750
+// o7Q8w_odGhN{K0l571Xsw
+// ivanSteve1!
+// o7Q8w_odGhN{K0l571Xsw
 exports.initialise = function() 
 {
   
@@ -51,7 +69,7 @@ exports.buyBattery = async function(anID)
 
         // Decrement only if available > 0
         const result = await conn.query(
-            `UPDATE battery 
+            `select battery 
              SET available = available - 1 
              WHERE id = ? AND available > 0`,
             [anID]
