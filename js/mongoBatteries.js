@@ -94,3 +94,19 @@ exports.addBatteries=async function()
         console.error("❌ Error:", err);
     } 
 }
+
+exports.addBattery=async function(brand, price, available, length, width, height, ampere, amp) 
+{
+    try
+    {
+        const db = client.db("Batteries"); // change if needed
+        const batteries = db.collection("Battery");
+
+        const result = await batteries.insertOne();
+        console.log(`Inserted ${result.insertedCount} documents`);
+    } 
+    catch (err) 
+    {
+        console.error("❌ Error:", err);
+    } 
+}
